@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type">
+    <meta name="description" content="A simple landing page for wed application">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Your Name">
+    <title>Landing page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <body>
+        <style>
+            body {
+                font-family: Garamond;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+            }
+            header {
+               position: sticky;
+               top: 0;
+               display: flex;
+               justify-content: space-between;
+               align-items: center;
+               padding: 15px 50px;
+               background: rgba(255, 255, 255, 0.1);
+               backdrop-filter: blur(10px);
+               border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+               z-index: 1000;
+            }
+             .logo {
+               font-size: 36px;
+               font-weight: 700;
+               color: green;
+               margin: 0;
+               flex: 1;
+               text-align: left;
+            }
+            .logo a {
+                font-size: 35px;
+                color: green;
+            }
+            nav {
+                display: flex;
+                align-items: center;
+                flex: 1;
+                justify-content: flex-end;
+            }
+            nav a {
+              margin-left: 25px;
+              text-decoration: none;
+              color: green;
+              font-weight: 500;
+              transition: color 0.3s ease;
+              font-size: 1.2rem;
+              padding: 10px;
+            }
+
+            nav a:hover {
+             color: #128743;
+            }
+            p {
+                text-align: center;
+                font-size: 1.6rem;
+                color: black;
+                margin: 20px auto;
+            }
+            .flex-section {
+                display: flex;
+                padding: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+                padding: 20px;
+            }
+            .flex-item {
+                background-color: white;
+                border-radius: 10px;
+                padding: 20px;
+                width: 100%;
+                max-width: 320px;
+                box-sizing: border-box;
+                margin: 10px;
+                flex: 1 1 300px;
+                min-width: 220px;
+                transition: background 0.2s, transform 0.3s;
+            }
+            .flex-item:hover {
+                transform: scale(1.05);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .flex-section {
+                    flex: 1 1 100%;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .flex-item {
+                    width: 100%;
+                    max-width: 90%;
+                }
+                button {
+                    font-size: 1.1rem;
+                    max-width: 100%;
+                }
+            }
+            footer {
+               text-align: center;
+               padding: 30px 20px;
+               background-color: #111827;
+               color: #fff;
+            }
+            footer a {
+              color: #128743;
+              margin: 0 15px;
+              text-decoration: none;
+              font-size: 20px;
+            }
+            footer a:hover {
+              text-decoration: underline;
+            }
+            footer p {
+              margin-top: 10px;
+              font-size: 18px;
+              color: #9ca3af;
+            }
+            .container {
+                display: flex;
+                align-self: center;
+                border-radius: 15px;
+                grid-template-columns: 1fr;
+                justify-content: center;
+            }
+            .modal {
+               display: none;
+               position: fixed;
+               z-index: 100;
+               left: 0;
+               top: 0;
+               width: 90%;
+               height: 90%;
+               overflow: auto;
+               background-color: rgba(0, 0, 0, 0.5);
+               padding-top: 60px;
+               text-align: center;
+           }
+          .modal-content {
+              background-color: white;
+              margin: 10% auto;
+              padding: 20px;
+              border-radius: 10px;
+              width: 250px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+              position: relative;
+              text-align: left; 
+           }   
+            .close {
+               color: #aaa;
+               float: right;
+               font-size: 28px;
+               font-weight: bold;
+               cursor: pointer;
+           }
+           .close:hover {
+              color: red;
+              text-decoration: solid;
+              cursor: pointer; 
+           }
+           input {
+              width: 90%;
+              padding: 10px;
+              margin: 10px 0;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+           }
+           .hero-section button {
+              width: 20%;
+              max-width: 200px;
+              padding: 10px 0;
+              background: linear-gradient(90deg, #f1f4f4, #128743);
+              border: none;
+              color: black;
+              border-radius: 5px;
+              cursor: pointer;
+              font-size: 1.2rem;
+              margin: 10px auto;
+              display: block;
+              transition:  background 0.2s, transform 0.2s;
+              border-radius: 15px;
+           }
+           button:hover {
+               transform: scale(1.05);
+           }
+          .modal-content p a {
+              font-size: 1.2rem;
+              color: black;
+              text-decoration: none;
+              display: inline-block; /* Added display property */
+              margin-top: 10px; /* Added margin for spacing */
+           }
+           .modal-content p a:hover {
+               text-decoration: underline;
+           }
+           .modal button {
+             background-color: #128743;
+             border-radius: 15px;
+             border: 2px rgba(198, 16, 16, 0.884);
+           }
+           .modal-content p {
+               font-size: 1.2rem;
+               margin-top: 10px; /* Added margin for spacing */
+               text-align: center; /* Centered the text */
+           }
+           .hero-section {
+               background: linear-gradient(135deg, #128743, #fff);
+               padding: 50px 0;
+               text-align: center;
+               color: white;
+               font-size: 3rem;
+               margin: 0 auto;
+           }
+           .hero-section p {
+              font-size: 2rem;
+              color: white;
+           }
+           .add-section {
+              text-align: center;
+              padding: 60px 20px;
+              background: linear-gradient(135deg, #128743, #fff);
+              color: #fff;
+           }
+           .add-section h2 {
+              font-size: 36px;
+              margin-bottom: 20px;
+           }
+           .add-section button {
+              padding: 12px 24px;
+              background: linear-gradient(135deg, #128743, #fff);
+              border: none;
+              border-radius: 15px;
+              color: white;
+              font-size: 18px;
+              cursor: pointer;
+              transition: background 0.3s;
+           }
+           .add-section button:hover {
+              background: linear-gradient(135deg, #fff, #128743);
+           }
+        </style>
+        <head>
+            <div class="logo"><a href="file:///C:/Users/MY%20SYSTEM/Desktop/landingpagefolder/Nin-Trueid/landingpage.html">TrueID</a></div>
+            <nav>
+                <a href="file:///C:/Users/MY%20SYSTEM/Desktop/landingpagefolder/Nin-Trueid/feature.html">Features</a>
+                <a href="file:///C:/Users/MY%20SYSTEM/Desktop/landingpagefolder/Nin-Trueid/aboutus.html">About</a>
+                <a href="file:///C:/Users/MY%20SYSTEM/Desktop/landingpagefolder/Nin-Trueid/Helpcenter.html">Contact</a>
+            </nav>
+        </head>
+        <div class="hero-section">
+        <h1>Register To get Your ID in minutes </h1>
+        <p>Take your first step towards securing your identity and unlocking access to countless opportunities. Start your journey with TrueID today!</p>
+        <button onclick="openModal()">Get Started</button>
+        </div>
+        <div class="container">
+          <section class="flex-section">
+            <div class="flex-item">
+                <h3>Step 1: Fill out the form</h3>
+                <p>Provide your personal information.</p>
+            </div>
+            <div class="flex-item">
+                <h3>Step 2: Verify your identity</h3>
+                <p>Upload necessary documents.</p>
+            </div>
+            <div class="flex-item">
+                <h3>Step 3: Submit your application</h3>
+                <p>Receive your NIN via email.</p>
+            </div>
+          </section>
+          </div>
+            <section class="add-section">
+                <h2>Join Us Today!</h2>
+                <button onclick="openModal()">Join Now</button>
+            </section>
+        <footer>
+            <a href="file:///C:/Users/MY%20SYSTEM/Desktop/landingpagefolder/Nin-Trueid/Helpcenter.html">Contacts</a>|
+            <a href="file:///C:/Users/MY%20SYSTEM/Desktop/Nin-Trueid/Terms.html">Terms of service</a>|
+            <a href="file:///C:/Users/MY%20SYSTEM/Desktop/landingpagefolder/Nin-Trueid/privacypolicy.html">Privacy policy</a>|
+            <p>&copy; 2025 TrueID. All rights reserved.</p>
+        </footer>
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Sign Up</h2>
+                <form id="signupForm">
+                    <label for="username"></label>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+        
+                    <label for="email"></label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+        
+                    <label for="phone"></label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+                    <span id="phoneError" class="error"></span>
+        
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <span id="passwordError" class="error"></span>
+        
+                    <label for="confirmPassword"></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                    <span id="confirmPasswordError" class="error"></span>
+        
+                    <button type="submit">Sign Up</button>
+                    <p>Already have an account? <a href="#" onclick="openLoginModal()">Log In</a></p>
+                </form>
+            </div>
+        </div>
+        <div id="signinModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeLoginModal()">&times;</span>
+                <h2>Sign In</h2>
+                <form id="signinForm">
+                    <label for="loginUsername"></label>
+                    <input type="text" id="loginUsername" name="username" placeholder="Username" required>
+                    <label for="email"></label>
+                    <input type="mail" id="email" name="email" placeholder="Email" required>
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                        <span id="passwordError" class="error"></span>
+                    <button type="submit">Sign In</button>
+                    <p>Don't have an account? <a href="#" onclick="openModal()">Sign Up</a></p>
+                </form>
+            </div>
+        </div>
+        <script>
+            function openModal() {
+                document.getElementById('signupModal').style.display = 'block';
+                document.getElementById('signinModal').style.display = 'none';
+            }
+            function closeModal() {
+                document.getElementById('signupModal').style.display = 'none';
+            }
+            window.onclick = function(event) {
+                const signupModal= document.getElementById('signupModal');
+                if (event.target === signupModal) {
+                    signupModal.style.display = 'none';
+                }
+            }
+            document.getElementById('signupForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+                // Add your form validation logic here
+            });
+            document.getElementById('password').addEventListener('focus', function () {
+                document.getElementById('passwordHint').style.display = 'block';
+            });
+            document.getElementById('password').addEventListener('blur', function () {
+                document.getElementById('passwordHint').style.display = 'none';
+            });
+            document.getElementById('password').addEventListener('input', function () {
+                const password = this.value;
+                const passwordError = document.getElementById('passwordError');
+                if (password.length < 8) {
+                    passwordError.textContent = 'Password must be at least 8 characters long.';
+                } else {
+                    passwordError.textContent = '';
+                }
+            });
+            document.getElementById('confirmPassword').addEventListener('input', function () {
+                const confirmPassword = this.value;
+                const password = document.getElementById('password').value;
+                const confirmPasswordError = document.getElementById('confirmPasswordError');
+                if (confirmPassword !== password) {
+                    confirmPasswordError.textContent = 'Passwords do not match.';
+                } else {
+                    confirmPasswordError.textContent = '';
+                }
+            });
+            document.getElementById('phone').addEventListener('input', function () {
+                const phone = this.value;
+                const phoneError = document.getElementById('phoneError');
+                const phonePattern = /^[0-9]{10}$/; // Example pattern for a 10-digit phone number
+                if (!phonePattern.test(phone)) {
+                    phoneError.textContent = 'Invalid phone number.';
+                } else {
+                    phoneError.textContent = '';
+                }
+            });
+            document.getElementById(submit).addEventListener('click', function () {
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                // Add your form submission logic here
+            });
+            function openLoginModal() {
+            document.getElementById('signinModal').style.display = 'block';
+            document.getElementById('signupModal').style.display = 'none';
+        }
+        function closeLoginModal() {
+            document.getElementById('signinModal').style.display ='none'
+        }
+        window.onclick = function(event) {
+                const loginModal= document.getElementById('signupModal');
+                if (event.target === loginModal) {
+                    loginModal.style.display = 'none';
+                }
+            }
+            document.getElementById('signinForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+                // Add your form validation logic here
+            });
+            document.getElementById('password').addEventListener('focus', function () {
+                document.getElementById('passwordHint').style.display = 'block';
+            });
+            document.getElementById('password').addEventListener('blur', function () {
+                document.getElementById('passwordHint').style.display = 'none';
+            });
+            document.getElementById('password').addEventListener('input', function () {
+                const password = this.value;
+                const passwordError = document.getElementById('passwordError');
+                if (password.length < 8) {
+                    passwordError.textContent = 'Password must be at least 8 characters long.';
+                } else {
+                    passwordError.textContent = '';
+                }
+            });
+            document.getElementById('submit').addEventListener('click', function () {
+                const username = document.getElementById('username').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                // Add your form submission logic here
+            });
+    </script>   
+    </body>
+</html>
